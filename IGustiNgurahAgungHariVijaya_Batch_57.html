@@ -10272,6 +10272,26 @@ exclusive
 0    0.735093
 1    0.264907
 Name: proportion, dtype: float64</p>
+<h3 id="Feature-selection">Feature selection<a class="anchor-link" href="#Feature-selection">¶</a></h3><p>Adapaun fitur fitur yang saya buang adalah :</p>
+<ul>
+<li>Fitur numerikal yang mentah
+Setelah saya melakukan transform log pada fitur fitur tersebut saya membuang fitur originalnya yang distribusinya masih skewed, tujuannya tentu karena sudah tidak diperlukan lagi.</li>
+<li>Fitur yang redundan
+Di nomer 3 saya melakukan analisis korelasi menggunakan heatmap dan menemukan bahwa kolom price dan value_price memiliki korelasi yang sangat tinggi hampir 1. Artinya keduanya memiliki informasi yang sama persis, sehingga saya memutuskan untuk membuat fitur price.</li>
+<li>Fitur kategorikal yang mentah
+Setelah saya melakukan mean encoding, semua fitur kategorikal telah berubah menjadi numerikal sehingga fitur kategorikal yang bertipe object/string tersebut sudah tidak diperlukan lagi. sehingga saya membuangnya.</li>
+</ul>
+<h3 id="Agar-tidak-membingungkan">Agar tidak membingungkan<a class="anchor-link" href="#Agar-tidak-membingungkan">¶</a></h3><ul>
+<li>saya lupa mengstandarkan fitur numerikal rating, sehinga saya lakukan hal tersebut setelah data tersebut di split dan di encoding. sekarang semua nilai sudah ada di rentang yang sama di dataset</li>
+</ul>
+<pre><code>       rating  exclusive  number_of_reviews_log  love_log  value_price_log  brand_enc  category_enc
+7763  0.559053          0               0.279923 -0.084044        -0.544431   0.209302      0.210938  
+4630  0.559053          1              -0.674212 -0.070576        -0.381357   1.000000      0.203125 
+250   0.559053          0              -0.010771  0.280225         0.955772   0.125000      0.523810  
+4977  1.232217          1              -0.974045  0.765897        -0.863373   0.962025      0.245614 
+3505 -1.460439          0               0.186644 -0.141509         0.729071   0.111111      0.223077
+
+</code></pre>
 </div>
 </div>
 </div>
